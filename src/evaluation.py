@@ -6,8 +6,8 @@ from typing import Protocol
 
 import pandas as pd
 
-from .data import unique_top_k
-from .utils import parse_literal_list
+from data import unique_top_k
+from utils import parse_literal_list
 
 
 class SatisfactionJudge(Protocol):

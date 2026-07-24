@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import argparse
 
-from semantic_search_assignment.config import ProjectPaths
-from semantic_search_assignment.data import export_combined_text, load_items
+from config import ProjectPaths
+from data import export_combined_text, load_items
 
 
 def main() -> None:

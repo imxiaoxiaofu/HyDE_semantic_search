@@ -2,14 +2,14 @@ from __future__ import annotations
 
 import argparse
 
-from semantic_search_assignment.config import ProjectPaths
-from semantic_search_assignment.data import load_items, load_queries
-from semantic_search_assignment.embeddings import (
+from config import ProjectPaths
+from data import load_items, load_queries
+from embeddings import (
     encode_texts,
     load_embedding_model,
     save_embeddings,
 )
-from semantic_search_assignment.retrieval import FaissRetriever, baseline_search_dataframe
+from retrieval import FaissRetriever, baseline_search_dataframe
 
 
 def main() -> None:

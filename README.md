@@ -21,7 +21,7 @@ The pipeline takes a query dataset and a curated catalog of food items, then:
 ## Project Structure
 
 ```text
-src/semantic_search_assignment/
+src/
   config.py        # project paths and artifact locations
   data.py          # dataset loading and item text construction
   embeddings.py    # sentence-transformer loading and batch encoding

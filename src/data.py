@@ -5,7 +5,7 @@ from typing import Iterable
 
 import pandas as pd
 
-from .utils import build_text_for_item, normalize_text, parse_json_like
+from utils import build_text_for_item, normalize_text, parse_json_like
 
 
 def load_queries(path: str | Path) -> pd.DataFrame:

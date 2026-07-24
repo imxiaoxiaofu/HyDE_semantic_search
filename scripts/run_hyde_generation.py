@@ -4,9 +4,9 @@ import argparse
 
 import pandas as pd
 
-from semantic_search_assignment.config import ProjectPaths
-from semantic_search_assignment.embeddings import load_embedding_model
-from semantic_search_assignment.hyde import (
+from config import ProjectPaths
+from embeddings import load_embedding_model
+from hyde import (
     OpenAIHyDEGenerator,
     generate_hyde_dataframe,
     write_hyde_embeddings,

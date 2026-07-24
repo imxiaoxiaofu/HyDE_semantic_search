@@ -1,4 +1,4 @@
-from semantic_search_assignment.utils import (
+from utils import (
     build_text_for_item,
     flatten_taxonomy,
     normalize_text,

@@ -9,7 +9,7 @@ import pandas as pd
 from pydantic import BaseModel, Field
 from tqdm import tqdm
 
-from .embeddings import encode_texts
+from embeddings import encode_texts
 
 
 DEFAULT_HYDE_MODEL = "gpt-4.1-mini"

@@ -2,10 +2,10 @@ from __future__ import annotations
 
 import argparse
 
-from semantic_search_assignment.config import ProjectPaths
-from semantic_search_assignment.data import load_items, load_queries
-from semantic_search_assignment.embeddings import load_embeddings
-from semantic_search_assignment.retrieval import FaissRetriever, pooled_hyde_search_dataframe
+from config import ProjectPaths
+from data import load_items, load_queries
+from embeddings import load_embeddings
+from retrieval import FaissRetriever, pooled_hyde_search_dataframe
 
 
 def main() -> None:

@@ -25,9 +25,15 @@ dev = [
 
 [tool.setuptools]
 package-dir = {"" = "src"}
-
-[tool.setuptools.packages.find]
-where = ["src"]
+py-modules = [
+  "config",
+  "data",
+  "embeddings",
+  "evaluation",
+  "hyde",
+  "retrieval",
+  "utils",
+]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

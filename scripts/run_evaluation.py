@@ -4,8 +4,8 @@ import argparse
 
 import pandas as pd
 
-from semantic_search_assignment.config import ProjectPaths
-from semantic_search_assignment.evaluation import OpenAISatisfactionJudge, evaluate_results
+from config import ProjectPaths
+from evaluation import OpenAISatisfactionJudge, evaluate_results
 
 
 def main() -> None:
