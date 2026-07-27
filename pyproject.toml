@@ -11,6 +11,7 @@ requires-python = ">=3.10"
 dependencies = [
   "faiss-cpu",
   "numpy",
+  "openpyxl",
   "openai",
   "pandas",
   "pydantic",

@@ -40,16 +40,27 @@ scripts/
 
 ## Data Expectations
 
-The code expects the original assignment data at:
+This refactor is artifact-first. The project can run the comparison pipeline from the files you already downloaded:
 
 ```text
-prosusai_assignment_data/
-  queries.csv
-  5k_items_curated.csv
-  output/
+output/
+  5k_items_curated.xlsx
+  item_embeddings_multilingual.npy
+  query_embeddings_multilingual.npy
+  hyde_generated_docs.csv
+  queries_with_top10_search.csv
+  hyde_embeddings/
 ```
 
-Dataset files and generated outputs are intentionally not tracked in Git in this refactored version. Place the original input CSVs under `prosusai_assignment_data/` before running the pipeline locally.
+Generated files are intentionally not tracked in Git. Place local data artifacts under `output/` before running the pipeline.
+
+The current artifact set is enough to regenerate:
+
+```text
+output/queries_with_top10_hyde_pooled_search.csv
+```
+
+The full from-scratch generation path is still available, but it additionally needs OpenAI access and a few-shot prompt file.
 
 ## Setup With uv
 
@@ -85,16 +96,16 @@ Run baseline retrieval:
 uv run python scripts/run_baseline_search.py --project-root .
 ```
 
+Regenerate HyDE pooled retrieval from the downloaded artifacts:
+
+```bash
+uv run python scripts/run_hyde_search.py --project-root .
+```
+
 Generate HyDE documents and their embeddings:
 
 ```bash
 uv run python scripts/run_hyde_generation.py --project-root . --few-shot-path path/to/few_shot_examples.txt
-```
-
-Run pooled HyDE retrieval:
-
-```bash
-uv run python scripts/run_hyde_search.py --project-root .
 ```
 
 Evaluate baseline and HyDE outputs:
@@ -111,7 +122,6 @@ uv run pytest
 
 ## Next Cleanup Steps
 
-- Add a reproducible few-shot curation step for HyDE prompt examples
-- Add unit tests for retrieval and evaluation helpers
-- Add one polished demo surface, likely Streamlit
+- Add a small web demo for Baseline vs. HyDE result comparison
+- Add a reproducible few-shot curation step for full HyDE regeneration
 - Document final quantitative results and key example queries

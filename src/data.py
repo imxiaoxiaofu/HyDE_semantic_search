@@ -10,15 +10,20 @@ from utils import build_text_for_item, normalize_text, parse_json_like
 
 def load_queries(path: str | Path) -> pd.DataFrame:
     queries = pd.read_csv(path)
-    if "search_term_pt" not in queries.columns:
-        raise ValueError("Expected queries.csv to contain a 'search_term_pt' column.")
+    if "search_term_pt" not in queries.columns and "query" not in queries.columns:
+        raise ValueError("Expected query data to contain a 'search_term_pt' or 'query' column.")
     queries = queries.copy()
-    queries["query"] = queries["search_term_pt"].apply(normalize_text)
+    source_column = "search_term_pt" if "search_term_pt" in queries.columns else "query"
+    queries["query"] = queries[source_column].apply(normalize_text)
     return queries
 
 
 def load_items(path: str | Path) -> pd.DataFrame:
-    items = pd.read_csv(path)
+    path = Path(path)
+    if path.suffix.lower() in {".xlsx", ".xls"}:
+        items = pd.read_excel(path)
+    else:
+        items = pd.read_csv(path)
     required_columns = {"itemId", "itemMetadata", "itemProfile"}
     missing = required_columns - set(items.columns)
     if missing:

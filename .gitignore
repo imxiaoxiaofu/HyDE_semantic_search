@@ -3,6 +3,7 @@ __pycache__
 .venv/
 .env
 *.pyc
+*.egg-info/
 .DS_Store
-prosusai_assignment_data/*
-!prosusai_assignment_data/.gitkeep
+output/*
+!output/.gitkeep

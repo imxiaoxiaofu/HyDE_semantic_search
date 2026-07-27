@@ -28,7 +28,9 @@ def main() -> None:
     paths = ProjectPaths.from_root(args.project_root)
     paths.ensure_output_dirs()
 
-    queries = pd.read_csv(paths.queries_path)["search_term_pt"].tolist()
+    query_frame = pd.read_csv(paths.queries_path)
+    query_column = "search_term_pt" if "search_term_pt" in query_frame.columns else "query"
+    queries = query_frame[query_column].tolist()
 
     few_shot_path = paths.project_root / args.few_shot_path
     if few_shot_path.suffix.lower() == ".csv":

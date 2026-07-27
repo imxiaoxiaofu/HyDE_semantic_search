@@ -16,8 +16,8 @@ class ProjectPaths:
     @classmethod
     def from_root(cls, project_root: str | Path) -> "ProjectPaths":
         root = Path(project_root).resolve()
-        data_dir = root / "prosusai_assignment_data"
-        output_dir = data_dir / "output"
+        output_dir = root / "output"
+        data_dir = output_dir
         embeddings_dir = output_dir / "hyde_embeddings"
         return cls(
             project_root=root,
@@ -28,11 +28,26 @@ class ProjectPaths:
 
     @property
     def queries_path(self) -> Path:
-        return self.data_dir / "queries.csv"
+        candidates = [
+            self.data_dir / "queries.csv",
+            self.baseline_results_path,
+            self.hyde_generated_docs_path,
+        ]
+        for path in candidates:
+            if path.exists():
+                return path
+        return candidates[0]
 
     @property
     def items_path(self) -> Path:
-        return self.data_dir / "5k_items_curated.csv"
+        candidates = [
+            self.data_dir / "5k_items_curated.xlsx",
+            self.data_dir / "5k_items_curated.csv",
+        ]
+        for path in candidates:
+            if path.exists():
+                return path
+        return candidates[0]
 
     @property
     def combined_text_path(self) -> Path:

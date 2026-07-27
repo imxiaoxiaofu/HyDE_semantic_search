@@ -90,7 +90,13 @@ def pooled_hyde_search_dataframe(
         for embedding in embeddings:
             candidate_hits.extend(retriever.search(embedding, top_k=top_k))
 
-        ranked = sorted(candidate_hits, key=lambda hit: hit.score, reverse=True)
+        best_hits_by_item: dict[Any, SearchHit] = {}
+        for hit in candidate_hits:
+            current = best_hits_by_item.get(hit.item_id)
+            if current is None or hit.score > current.score:
+                best_hits_by_item[hit.item_id] = hit
+
+        ranked = sorted(best_hits_by_item.values(), key=lambda hit: hit.score, reverse=True)
         top_hits = ranked[:top_k]
         records.append(
             {
